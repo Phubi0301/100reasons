@@ -203,11 +203,11 @@
     </svg>
     
    <div class="calendar-container">
-    <h1 class="calendar-title">Я люблю тебя,</h1>
+    <h1 class="calendar-title">Я люблю нас,</h1>
     <div class="calendar">
         <div class="calendar-header">
             <div class="month-nav prev-month" id="prevMonth"></div>
-            <div class="month-year" id="monthYear">Март 25</div>
+            <div class="month-year" id="monthYear">Март 26</div>
             <div class="month-nav next-month" id="nextMonth"></div>
         </div>
         <div class="calendar-grid" id="calendarGrid">
@@ -232,8 +232,8 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Set start and end dates
-            const startDate = new Date('2025-02-28');
-            const endDate = new Date('2026-02-28');
+            const startDate = new Date('2026-02-28');
+            const endDate = new Date('2026-06-10');
             
             // Current date for determining which dates to enable
             const today = new Date();
@@ -245,7 +245,7 @@ const paramYear = urlParams.get('year');
 
 // Set initial display date - use parameters if available, otherwise default to March 2025
 let currentMonth = paramMonth !== null ? parseInt(paramMonth) : 2; // Default to March (0-indexed)
-let currentYear = paramYear !== null ? parseInt(paramYear) : 2025;
+let currentYear = paramYear !== null ? parseInt(paramYear) : 2026;
             
             // Russian month names
             const monthNames = [
@@ -354,7 +354,7 @@ let currentYear = paramYear !== null ? parseInt(paramYear) : 2025;
             // Next month button
             document.getElementById('nextMonth').addEventListener('click', function() {
                 // Don't go after February 2026
-                const maxDate = new Date(2026, 2, 1); // March 1, 2026
+                const maxDate = new Date(2027, 2, 1); // March 1, 2026
                 const checkDate = new Date(currentYear, currentMonth + 1, 1);
                 
                 if (checkDate < maxDate) {
