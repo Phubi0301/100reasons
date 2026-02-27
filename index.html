@@ -28,7 +28,6 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('petra.jpg');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -87,7 +86,28 @@
 
     <script>
         // Wait for the page to load
-        document.addEventListener('DOMContentLoaded', function() {
+      <script>
+document.addEventListener('DOMContentLoaded', function() {
+
+    // ---- Daily selfie on landing page (100 days) ----
+    const startDate = new Date('2026-03-01'); // change if needed
+    const totalDays = 110;
+
+    const today = new Date();
+    const todayMidnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    const startMidnight = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
+
+    const dayDiff = Math.floor((todayMidnight - startMidnight) / (24 * 60 * 60 * 1000));
+    const dayIndex = Math.max(0, Math.min(totalDays - 1, dayDiff));
+    const dayNumber = dayIndex + 1;
+
+    const filename = `selfies/${dayNumber}.jpeg`;
+
+    const bg = document.querySelector('.background');
+    if (bg) {
+        bg.style.backgroundImage = `url('${filename}')`;
+    }
+
             const submitBtn = document.getElementById('submitBtn');
             const codeInput = document.getElementById('codeInput');
             const errorMessage = document.getElementById('errorMessage');
