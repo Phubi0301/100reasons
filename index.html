@@ -84,11 +84,11 @@
         </div>
     </div>
 
-  <script>
-document.addEventListener('DOMContentLoaded', function () {
+ <script>
+document.addEventListener('DOMContentLoaded', function() {
 
   // ---- Daily selfie on landing page (110 days) ----
-  const startDate = new Date('2026-03-01'); // Day 1
+  const startDate = new Date('2026-03-01'); // Day 1 (change if needed)
   const totalDays = 110;
 
   const today = new Date();
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const dayIndex = Math.max(0, Math.min(totalDays - 1, dayDiff));
   const dayNumber = dayIndex + 1;
 
-  // expects: selfies/1.jpeg, selfies/2.jpeg, ... selfies/110.jpeg
+  // expects selfies/1.jpeg, selfies/2.jpeg, ..., selfies/110.jpeg
   const filename = `selfies/${dayNumber}.jpeg`;
 
   const bg = document.querySelector('.background');
@@ -115,14 +115,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const enteredCode = codeInput.value.trim();
 
     if (enteredCode === correctCode) {
-      // IMPORTANT: choose ONE of these options:
-
-      // Option A (recommended): rename success-2.html -> success.html, then keep this:
       window.location.href = 'success.html';
-
-      // Option B: if you keep the file name success-2.html, use this instead:
-      // window.location.href = 'success-2.html';
-
     } else {
       errorMessage.style.display = 'block';
       codeInput.value = '';
@@ -131,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   submitBtn.addEventListener('click', checkCode);
-  codeInput.addEventListener('keypress', function (event) {
+  codeInput.addEventListener('keypress', function(event) {
     if (event.key === 'Enter') checkCode();
   });
 
