@@ -351,6 +351,7 @@ let currentYear = paramYear !== null ? parseInt(paramYear) : 2026;
             
             // Generate initial calendar
             generateCalendar(currentMonth, currentYear);
+            setCalendarBackground(currentMonth, currentYear);
             
             // Previous month button
             document.getElementById('prevMonth').addEventListener('click', function() {
