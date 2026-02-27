@@ -265,7 +265,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // --- Day-based selfie background: 1.jpeg, 2.jpeg, ... ---
   const bgEl = document.getElementById('background');
   if (bgEl) {
-    const selfieFile = `${dayIndex + 1}.jpeg`; // 1.jpeg, 2.jpeg ...
+    const selfieFile = `selfies/${dayIndex + 1}.jpeg`;
 
     // Immediate fallback to avoid white screen
     bgEl.style.backgroundImage = `url('background.jpg')`;
