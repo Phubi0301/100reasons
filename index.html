@@ -33,6 +33,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+           background-image: url('background.jpg');
         }
         
         .input-container {
@@ -86,24 +87,6 @@
 
  <script>
 document.addEventListener('DOMContentLoaded', function() {
-
-  // ---- Daily selfie on landing page (110 days) ----
-  const startDate = new Date('2026-03-01'); // Day 1 (change if needed)
-  const totalDays = 110;
-
-  const today = new Date();
-  const todayMidnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-  const startMidnight = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
-
-  const dayDiff = Math.floor((todayMidnight - startMidnight) / (24 * 60 * 60 * 1000));
-  const dayIndex = Math.max(0, Math.min(totalDays - 1, dayDiff));
-  const dayNumber = dayIndex + 1;
-
-  // expects selfies/1.jpeg, selfies/2.jpeg, ..., selfies/110.jpeg
-  const filename = `selfies/${dayNumber}.jpeg`;
-
-  const bg = document.querySelector('.background');
-  if (bg) bg.style.backgroundImage = `url('${filename}')`;
 
   // ---- Code check / redirect ----
   const submitBtn = document.getElementById('submitBtn');
