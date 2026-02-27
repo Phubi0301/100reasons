@@ -279,13 +279,19 @@ document.addEventListener('DOMContentLoaded', function () {
     reasonDateEl.textContent = "";
   }
 
-  // Background image logic (kept from your approach)
-  const monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  const month = monthNames[openDate.getMonth()];
-  const year = openDate.getFullYear() === 2025 ? '25' : '26';
-  const backgroundImage = `${month}${year}.jpg`;
-  document.getElementById('background').style.backgroundImage = `url('${backgroundImage}')`;
+  // --- Day-based selfie background: 1.jpeg, 2.jpeg, ... ---
+const bgEl = document.getElementById('background');
+if (bgEl) {
+  const photoNumber = dayIndex + 1;          // dayIndex is 0-based
+  const selfieFile = `${photoNumber}.jpeg`;  // e.g. "1.jpeg"
 
+  // Set a fallback immediately so it never flashes white
+  bgEl.style.backgroundImage = `url('background.jpg')`;
+
+  const img = new Image();
+  img.onload = () => { bgEl.style.backgroundImage = `url('${selfieFile}')`; };
+  img.onerror = () => { bgEl.style.backgroundImage = `url('background.jpg')`; };
+  img.src = selfieFile;
   // Back button
   const backButton = document.getElementById('backButton');
   backButton.addEventListener('click', function (e) {
