@@ -84,67 +84,59 @@
         </div>
     </div>
 
-    <script>
-        // Wait for the page to load
-      <script>
-document.addEventListener('DOMContentLoaded', function() {
+  <script>
+document.addEventListener('DOMContentLoaded', function () {
 
-    // ---- Daily selfie on landing page (100 days) ----
-    const startDate = new Date('2026-03-01'); // change if needed
-    const totalDays = 110;
+  // ---- Daily selfie on landing page (110 days) ----
+  const startDate = new Date('2026-03-01'); // Day 1
+  const totalDays = 110;
 
-    const today = new Date();
-    const todayMidnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-    const startMidnight = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
+  const today = new Date();
+  const todayMidnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+  const startMidnight = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
 
-    const dayDiff = Math.floor((todayMidnight - startMidnight) / (24 * 60 * 60 * 1000));
-    const dayIndex = Math.max(0, Math.min(totalDays - 1, dayDiff));
-    const dayNumber = dayIndex + 1;
+  const dayDiff = Math.floor((todayMidnight - startMidnight) / (24 * 60 * 60 * 1000));
+  const dayIndex = Math.max(0, Math.min(totalDays - 1, dayDiff));
+  const dayNumber = dayIndex + 1;
 
-    const filename = `selfies/${dayNumber}.jpeg`;
+  // expects: selfies/1.jpeg, selfies/2.jpeg, ... selfies/110.jpeg
+  const filename = `selfies/${dayNumber}.jpeg`;
 
-    const bg = document.querySelector('.background');
-    if (bg) {
-        bg.style.backgroundImage = `url('${filename}')`;
+  const bg = document.querySelector('.background');
+  if (bg) bg.style.backgroundImage = `url('${filename}')`;
+
+  // ---- Code check / redirect ----
+  const submitBtn = document.getElementById('submitBtn');
+  const codeInput = document.getElementById('codeInput');
+  const errorMessage = document.getElementById('errorMessage');
+
+  function checkCode() {
+    const correctCode = '240525';
+    const enteredCode = codeInput.value.trim();
+
+    if (enteredCode === correctCode) {
+      // IMPORTANT: choose ONE of these options:
+
+      // Option A (recommended): rename success-2.html -> success.html, then keep this:
+      window.location.href = 'success.html';
+
+      // Option B: if you keep the file name success-2.html, use this instead:
+      // window.location.href = 'success-2.html';
+
+    } else {
+      errorMessage.style.display = 'block';
+      codeInput.value = '';
+      codeInput.focus();
     }
+  }
 
-            const submitBtn = document.getElementById('submitBtn');
-            const codeInput = document.getElementById('codeInput');
-            const errorMessage = document.getElementById('errorMessage');
-            
-            // Function to check the code
-            function checkCode() {
-                const correctCode = '240525';
-                const enteredCode = codeInput.value.trim();
-                
-                if (enteredCode === correctCode) {
-                    // Redirect to the next page if code is correct
-                    window.location.href = 'success.html';
-                } else {
-                    // Show error message if code is incorrect
-                    errorMessage.style.display = 'block';
-                    
-                    // Clear the input field
-                    codeInput.value = '';
-                    
-                    // Focus on the input field
-                    codeInput.focus();
-                }
-            }
-            
-            // Add click event listener to the submit button
-            submitBtn.addEventListener('click', checkCode);
-            
-            // Add keypress event listener to input field to submit on Enter key
-            codeInput.addEventListener('keypress', function(event) {
-                if (event.key === 'Enter') {
-                    checkCode();
-                }
-            });
-            
-            // Focus on the input field when the page loads
-            codeInput.focus();
-        });
-    </script>
+  submitBtn.addEventListener('click', checkCode);
+  codeInput.addEventListener('keypress', function (event) {
+    if (event.key === 'Enter') checkCode();
+  });
+
+  codeInput.focus();
+});
+</script>
 </body>
 </html>
