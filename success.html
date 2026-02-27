@@ -232,8 +232,8 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Set start and end dates
-            const startDate = new Date('2026-02-28');
-            const endDate = new Date('2026-06-10');
+            const startDate = new Date('2026-03-01');
+            const endDate = new Date('2026-06-19');
             
             // Current date for determining which dates to enable
             const today = new Date();
@@ -255,9 +255,26 @@ let currentYear = paramYear !== null ? parseInt(paramYear) : 2026;
             
             // Day names
             const dayNames = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+
+            function setCalendarBackground(month, year) {
+  const monthAbbrev = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const mm = monthAbbrev[month];
+  const yy = year.toString().slice(-2); // "26", "25", etc
+  const candidate = `${mm}${yy}.jpg`;   // e.g. Mar26.jpg
+
+  const container = document.querySelector('.calendar-container');
+  if (!container) return;
+
+  // Try the month image; if missing, fall back to background.jpg
+  const img = new Image();
+  img.onload = () => container.style.backgroundImage = `url('${candidate}')`;
+  img.onerror = () => container.style.backgroundImage = `url('background.jpg')`;
+  img.src = candidate;
+}
             
             // Function to generate calendar
             function generateCalendar(month, year) {
+                setCalendarBackground(month, year);
                 const calendarGrid = document.getElementById('calendarGrid');
                 const monthYear = document.getElementById('monthYear');
                 
@@ -403,6 +420,7 @@ let currentYear = paramYear !== null ? parseInt(paramYear) : 2026;
             // Update the generateCalendar function to check for admin mode
             const originalGenerateCalendar = generateCalendar;
             generateCalendar = function(month, year) {
+                setCalendarBackground(month, year);
                 const calendarGrid = document.getElementById('calendarGrid');
                 const monthYear = document.getElementById('monthYear');
                 
